@@ -1,14 +1,17 @@
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
-import { fileURLToPath } from 'url';
-import path from 'path';
+// import CopyWebpackPlugin from 'copy-webpack-plugin';
+// import TerserPlugin from 'terser-webpack-plugin';
+// import { fileURLToPath } from 'url';
+// import path from 'path';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const path = require('path');
 /**
  * @type {import('webpack').Configuration}
  */
-export default {
+module.exports = {
     mode: 'development',
     devtool: 'source-map',
     entry: {
@@ -19,10 +22,10 @@ export default {
     },
     output: {
         filename: '[name].js',
-        path: __dirname,
-        library: {
-            type: 'module',
-        },
+        path: path.resolve(__dirname),
+        // library: {
+        //     type: 'module',
+        // },
     },
     plugins: [
         // Copy .wasm files to dist folder
@@ -48,7 +51,7 @@ export default {
         },
         port: 8080
     },
-    experiments: {
-        outputModule: true,
-    },
+    // experiments: {
+    //     outputModule: true,
+    // },
 };
